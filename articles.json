@@ -1,0 +1,23 @@
+[
+    {
+        "id": 3,
+        "title": "Risotto Jamur Creamy",
+        "desc": "Pelajari teknik rahasia memasak risotto agar selembut mentega namun tetap al dente.",
+        "image": "https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=600",
+        "url": "artikel/risotto-jamur.html"
+    },
+    {
+        "id": 2,
+        "title": "Lasagna Klasik Bologna",
+        "desc": "Resep turun temurun menggunakan 7 lapis pasta dan saus bolognese spesial.",
+        "image": "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=600",
+        "url": "artikel/lasagna-klasik.html"
+    },
+    {
+        "id": 1,
+        "title": "Pizza Margherita Otentik",
+        "desc": "Mengenal pizza paling legendaris yang hanya menggunakan 3 bahan utama.",
+        "image": "https://images.unsplash.com/photo-1574071318508-1cdbad80ad38?w=600",
+        "url": "artikel/pizza-margherita.html"
+    }
+]
