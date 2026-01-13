@@ -1,22 +1,13 @@
-/* Reset Total */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+/* Reset & Variabel */
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
 
 :root {
     --bluesky: #87CEEB;
     --pink: #FFB6C1;
     --dark-blue: #4682B4;
-    --white: #ffffff;
 }
 
-body {
-    background-color: #ffffff;
-    overflow-x: hidden; /* Mencegah scroll horizontal */
-}
+body { background-color: #ffffff; overflow-x: hidden; }
 
 /* Header Full Width */
 header {
@@ -28,99 +19,104 @@ header {
     width: 100%;
 }
 
-/* Container Benar-benar 100% */
-.container {
+/* UI Feedback Bar Pink */
+.filter-bar {
+    background-color: var(--pink);
+    color: white;
+    padding: 20px 5%;
+    display: none; /* Muncul via JS */
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
-    max-width: 100% !important; /* Memaksa lebar penuh */
-    margin: 0;
-    padding: 0;
 }
 
-/* Card Artikel Full Width 1 Grid Vertikal */
+.filter-bar h3 { font-size: 1.5rem; font-weight: bold; }
+
+.btn-reset {
+    background: white;
+    color: var(--pink);
+    border: none;
+    padding: 10px 25px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+/* Container 100% */
+.container { width: 100%; padding: 0; }
+
 .article-card {
     width: 100%;
-    background: var(--white);
-    margin-bottom: 0; /* Menghilangkan jarak antar card agar menyatu atau beri sedikit jika mau */
+    background: white;
+    border-bottom: 10px solid #f9f9f9;
     padding-bottom: 50px;
-    border-bottom: 2px solid #f0f0f0;
-    display: block;
 }
 
-/* Media (Gambar/Video) 100% Tanpa Sisa */
+/* Media 100% Viewport Width */
 .article-card img, .post-image, video {
-    width: 100vw; /* Lebar sesuai viewport */
-    height: 60vh; /* Tinggi proporsional di desktop */
-    object-fit: cover; /* Gambar tetap rapi meski ditarik lebar */
+    width: 100vw;
+    height: 65vh;
+    object-fit: cover;
     display: block;
 }
 
-/* Info Artikel */
-.article-content {
-    padding: 40px 5%; /* Memberi jarak teks dari pinggir layar (5% dari lebar) */
-}
+/* Tag Kategori */
+.tag-container { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; }
 
-.article-content h2 {
-    font-size: 2.5rem;
-    color: var(--dark-blue);
-    margin-bottom: 15px;
+.tag {
+    background-color: var(--bluesky);
+    color: white;
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: 0.3s;
 }
+.tag:hover { background: var(--dark-blue); }
 
-.article-content p {
-    font-size: 1.2rem;
-    color: #444;
-    line-height: 1.8;
-    margin-bottom: 25px;
-}
+/* Content Padding */
+.article-content { padding: 40px 5%; }
+.article-content h2 { font-size: 2.8rem; color: var(--dark-blue); margin-bottom: 15px; }
+.article-content p { font-size: 1.3rem; color: #444; margin-bottom: 30px; line-height: 1.8; }
 
 .btn-read {
     display: inline-block;
-    background-color: var(--pink);
+    background: var(--pink);
     color: white;
-    padding: 15px 40px;
+    padding: 15px 45px;
     text-decoration: none;
     border-radius: 50px;
     font-weight: bold;
-    transition: 0.3s;
+    font-size: 1.1rem;
 }
 
-.btn-read:hover {
-    background-color: var(--bluesky);
-}
-
-/* Push Notification Full Width */
+/* Push Notification */
 #push-notif {
     position: fixed;
     top: -200px;
     left: 0;
     right: 0;
-    background: var(--white);
-    padding: 20px 5%;
+    background: white;
+    padding: 25px 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 25px rgba(0,0,0,0.1);
     z-index: 10000;
-    transition: 0.5s ease-in-out;
+    transition: 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
     border-bottom: 5px solid var(--bluesky);
 }
+#push-notif.active { top: 0; }
 
-#push-notif.active {
-    top: 0;
-}
+footer { background: #222; color: white; text-align: center; padding: 60px; }
 
-footer {
-    background: #333;
-    color: white;
-    text-align: center;
-    padding: 50px;
-}
-
-/* Penyesuaian untuk layar Kecil (Mobile) */
+/* Responsive Mobile */
 @media (max-width: 768px) {
-    .article-card img {
-        height: 300px; /* Lebih pendek di HP */
-    }
-    .article-content h2 {
-        font-size: 1.8rem;
-    }
+    .article-card img { height: 350px; }
+    .article-content h2 { font-size: 1.8rem; }
+    .filter-bar h3 { font-size: 1.2rem; }
 }
