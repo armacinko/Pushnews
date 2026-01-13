@@ -1,0 +1,95 @@
+/* Reset & Tema BlueSky Pink */
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+
+:root {
+    --bluesky: #87CEEB;
+    --pink: #FFB6C1;
+    --dark-blue: #4682B4;
+    --bg-light: #F0F8FF;
+}
+
+body { background-color: var(--bg-light); color: #333; line-height: 1.6; }
+
+/* Header */
+header {
+    background: var(--bluesky);
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+    border-bottom: 6px solid var(--pink);
+}
+
+/* Layout 1 Grid Vertikal */
+.container {
+    width: 100%;
+    max-width: 600px; /* Cocok untuk Web View HP */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Card Artikel */
+.article-card {
+    background: white;
+    margin-bottom: 30px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+/* Gambar & Video Responsive 100% */
+.article-card img, .post-content img, video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.article-info { padding: 20px; }
+.article-info h2 { color: var(--dark-blue); margin: 10px 0; font-size: 1.5rem; }
+.article-info p { color: #666; font-size: 0.95rem; }
+
+.btn-read {
+    display: inline-block;
+    background: var(--pink);
+    color: white;
+    padding: 10px 25px;
+    text-decoration: none;
+    border-radius: 30px;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+/* Push Notification Toast */
+#push-notif {
+    position: fixed;
+    top: -120px;
+    left: 20px;
+    right: 20px;
+    background: white;
+    padding: 15px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    z-index: 9999;
+    transition: 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    border-left: 8px solid var(--bluesky);
+}
+
+#push-notif.active { top: 20px; }
+
+.notif-text h4 { font-size: 14px; color: var(--dark-blue); }
+.notif-text p { font-size: 12px; color: #777; }
+
+.notif-btn {
+    background: var(--pink);
+    border: none;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+footer { text-align: center; padding: 40px; color: #aaa; font-size: 12px; }
