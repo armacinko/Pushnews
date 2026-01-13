@@ -2,22 +2,25 @@
     {
         "id": 3,
         "title": "Risotto Jamur Creamy",
-        "desc": "Pelajari teknik rahasia memasak risotto agar selembut mentega namun tetap al dente.",
-        "image": "https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=600",
-        "url": "artikel/risotto-jamur.html"
+        "desc": "Teknik memasak risotto Italia autentik dengan tekstur lembut dan aroma jamur porcini pilihan.",
+        "image": "https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=1600",
+        "url": "artikel/risotto-jamur.html",
+        "tags": ["Nasi", "Jamur", "Vegetarian"]
     },
     {
         "id": 2,
-        "title": "Lasagna Klasik Bologna",
-        "desc": "Resep turun temurun menggunakan 7 lapis pasta dan saus bolognese spesial.",
-        "image": "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=600",
-        "url": "artikel/lasagna-klasik.html"
+        "title": "Lasagna 7 Lapis Klasik",
+        "desc": "Rahasia lasagna sempurna ada pada lapisan pasta segar dan saus bechamel yang lumer di mulut.",
+        "image": "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=1600",
+        "url": "artikel/lasagna-klasik.html",
+        "tags": ["Pasta", "Daging", "Populer"]
     },
     {
         "id": 1,
-        "title": "Pizza Margherita Otentik",
-        "desc": "Mengenal pizza paling legendaris yang hanya menggunakan 3 bahan utama.",
-        "image": "https://images.unsplash.com/photo-1574071318508-1cdbad80ad38?w=600",
-        "url": "artikel/pizza-margherita.html"
+        "title": "Pizza Margherita Napoletana",
+        "desc": "Kombinasi klasik tomat San Marzano, Mozzarella fior di latte, dan kemangi segar langsung dari Naples.",
+        "image": "https://images.unsplash.com/photo-1574071318508-1cdbad80ad38?w=1600",
+        "url": "artikel/pizza-margherita.html",
+        "tags": ["Pizza", "Keju", "Favorit"]
     }
 ]
