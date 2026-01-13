@@ -1,95 +1,79 @@
-/* Reset & Tema BlueSky Pink */
+/* Reset & Variabel */
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
 
 :root {
     --bluesky: #87CEEB;
     --pink: #FFB6C1;
     --dark-blue: #4682B4;
-    --bg-light: #F0F8FF;
+    --bg-light: #F8FDFF;
 }
 
 body { background-color: var(--bg-light); color: #333; line-height: 1.6; }
 
-/* Header */
+/* Header Full Width */
 header {
     background: var(--bluesky);
     color: white;
-    padding: 40px 20px;
+    padding: 60px 20px;
     text-align: center;
-    border-bottom: 6px solid var(--pink);
+    border-bottom: 8px solid var(--pink);
+    width: 100%;
 }
 
-/* Layout 1 Grid Vertikal */
+/* Container Full Width (Desktop, Tablet, Mobile) */
 .container {
     width: 100%;
-    max-width: 600px; /* Cocok untuk Web View HP */
-    margin: 0 auto;
     padding: 20px;
+    display: flex;
+    flex-direction: column; /* Menjamin 1 Grid Vertikal */
+    gap: 30px;
 }
 
-/* Card Artikel */
+/* Card Artikel 100% Lebar */
 .article-card {
     background: white;
-    margin-bottom: 30px;
-    border-radius: 20px;
+    width: 100%; /* Memenuhi lebar layar */
+    border-radius: 0px; /* Opsional: 0 agar terlihat menyatu dengan pinggiran layar desktop */
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-bottom: 5px solid var(--pink);
+    display: flex;
+    flex-direction: column;
 }
 
-/* Gambar & Video Responsive 100% */
+/* Media Responsive 100% */
 .article-card img, .post-content img, video {
     width: 100%;
-    height: auto;
+    height: auto; /* Menjaga proporsi gambar */
+    max-height: 500px; /* Agar gambar tidak terlalu tinggi di layar desktop raksasa */
+    object-fit: cover; /* Memotong gambar dengan rapi jika melebihi max-height */
     display: block;
 }
 
-.article-info { padding: 20px; }
-.article-info h2 { color: var(--dark-blue); margin: 10px 0; font-size: 1.5rem; }
-.article-info p { color: #666; font-size: 0.95rem; }
+.article-info { padding: 30px; }
+.article-info h2 { color: var(--dark-blue); font-size: 2rem; margin-bottom: 15px; }
+.article-info p { color: #555; font-size: 1.1rem; margin-bottom: 20px; }
 
 .btn-read {
     display: inline-block;
     background: var(--pink);
     color: white;
-    padding: 10px 25px;
+    padding: 12px 30px;
     text-decoration: none;
-    border-radius: 30px;
-    margin-top: 15px;
+    border-radius: 5px;
     font-weight: bold;
+    font-size: 1rem;
 }
 
-/* Push Notification Toast */
+/* Push Notification */
 #push-notif {
-    position: fixed;
-    top: -120px;
-    left: 20px;
-    right: 20px;
-    background: white;
-    padding: 15px;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    z-index: 9999;
-    transition: 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-    border-left: 8px solid var(--bluesky);
+    position: fixed; top: -150px; left: 0; right: 0;
+    background: white; padding: 20px;
+    display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.2); z-index: 9999;
+    transition: 0.5s; border-bottom: 4px solid var(--bluesky);
 }
+#push-notif.active { top: 0; }
+.notif-btn { background: var(--pink); border: none; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold; }
 
-#push-notif.active { top: 20px; }
-
-.notif-text h4 { font-size: 14px; color: var(--dark-blue); }
-.notif-text p { font-size: 12px; color: #777; }
-
-.notif-btn {
-    background: var(--pink);
-    border: none;
-    color: white;
-    padding: 8px 15px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-footer { text-align: center; padding: 40px; color: #aaa; font-size: 12px; }
+footer { text-align: center; padding: 50px; background: #eee; margin-top: 20px; }
