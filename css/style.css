@@ -1,18 +1,26 @@
-/* Reset & Variabel */
-* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+/* Reset Total */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
 :root {
     --bluesky: #87CEEB;
     --pink: #FFB6C1;
     --dark-blue: #4682B4;
-    --bg-light: #F8FDFF;
+    --white: #ffffff;
 }
 
-body { background-color: var(--bg-light); color: #333; line-height: 1.6; }
+body {
+    background-color: #ffffff;
+    overflow-x: hidden; /* Mencegah scroll horizontal */
+}
 
 /* Header Full Width */
 header {
-    background: var(--bluesky);
+    background-color: var(--bluesky);
     color: white;
     padding: 60px 20px;
     text-align: center;
@@ -20,60 +28,99 @@ header {
     width: 100%;
 }
 
-/* Container Full Width (Desktop, Tablet, Mobile) */
+/* Container Benar-benar 100% */
 .container {
     width: 100%;
-    padding: 20px;
-    display: flex;
-    flex-direction: column; /* Menjamin 1 Grid Vertikal */
-    gap: 30px;
+    max-width: 100% !important; /* Memaksa lebar penuh */
+    margin: 0;
+    padding: 0;
 }
 
-/* Card Artikel 100% Lebar */
+/* Card Artikel Full Width 1 Grid Vertikal */
 .article-card {
-    background: white;
-    width: 100%; /* Memenuhi lebar layar */
-    border-radius: 0px; /* Opsional: 0 agar terlihat menyatu dengan pinggiran layar desktop */
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    border-bottom: 5px solid var(--pink);
-    display: flex;
-    flex-direction: column;
-}
-
-/* Media Responsive 100% */
-.article-card img, .post-content img, video {
     width: 100%;
-    height: auto; /* Menjaga proporsi gambar */
-    max-height: 500px; /* Agar gambar tidak terlalu tinggi di layar desktop raksasa */
-    object-fit: cover; /* Memotong gambar dengan rapi jika melebihi max-height */
+    background: var(--white);
+    margin-bottom: 0; /* Menghilangkan jarak antar card agar menyatu atau beri sedikit jika mau */
+    padding-bottom: 50px;
+    border-bottom: 2px solid #f0f0f0;
     display: block;
 }
 
-.article-info { padding: 30px; }
-.article-info h2 { color: var(--dark-blue); font-size: 2rem; margin-bottom: 15px; }
-.article-info p { color: #555; font-size: 1.1rem; margin-bottom: 20px; }
+/* Media (Gambar/Video) 100% Tanpa Sisa */
+.article-card img, .post-image, video {
+    width: 100vw; /* Lebar sesuai viewport */
+    height: 60vh; /* Tinggi proporsional di desktop */
+    object-fit: cover; /* Gambar tetap rapi meski ditarik lebar */
+    display: block;
+}
+
+/* Info Artikel */
+.article-content {
+    padding: 40px 5%; /* Memberi jarak teks dari pinggir layar (5% dari lebar) */
+}
+
+.article-content h2 {
+    font-size: 2.5rem;
+    color: var(--dark-blue);
+    margin-bottom: 15px;
+}
+
+.article-content p {
+    font-size: 1.2rem;
+    color: #444;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
 
 .btn-read {
     display: inline-block;
-    background: var(--pink);
+    background-color: var(--pink);
     color: white;
-    padding: 12px 30px;
+    padding: 15px 40px;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 50px;
     font-weight: bold;
-    font-size: 1rem;
+    transition: 0.3s;
 }
 
-/* Push Notification */
+.btn-read:hover {
+    background-color: var(--bluesky);
+}
+
+/* Push Notification Full Width */
 #push-notif {
-    position: fixed; top: -150px; left: 0; right: 0;
-    background: white; padding: 20px;
-    display: flex; align-items: center; justify-content: space-between;
-    box-shadow: 0 5px 25px rgba(0,0,0,0.2); z-index: 9999;
-    transition: 0.5s; border-bottom: 4px solid var(--bluesky);
+    position: fixed;
+    top: -200px;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    padding: 20px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    z-index: 10000;
+    transition: 0.5s ease-in-out;
+    border-bottom: 5px solid var(--bluesky);
 }
-#push-notif.active { top: 0; }
-.notif-btn { background: var(--pink); border: none; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold; }
 
-footer { text-align: center; padding: 50px; background: #eee; margin-top: 20px; }
+#push-notif.active {
+    top: 0;
+}
+
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 50px;
+}
+
+/* Penyesuaian untuk layar Kecil (Mobile) */
+@media (max-width: 768px) {
+    .article-card img {
+        height: 300px; /* Lebih pendek di HP */
+    }
+    .article-content h2 {
+        font-size: 1.8rem;
+    }
+}
