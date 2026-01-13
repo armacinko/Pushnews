@@ -3,79 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NyamanNya</title>
+    <title>Culinaria Blog</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <div id="push-notif">
-    <div class="notif-text">
-        <h4>Menu Baru Tersedia!</h4>
-        <p id="notif-title-text"></p>
+    <div>
+        <h4 style="color:var(--dark-blue)">Update Terbaru!</h4>
+        <p id="notif-text" style="font-size:14px; color:#666;"></p>
     </div>
-    <button class="notif-btn" id="btn-open-notif">Buka</button>
+    <button onclick="openLatest()" class="btn-read" style="padding: 10px 20px; font-size: 12px;">Buka</button>
 </div>
 
 <header>
     <h1>Culinaria Italia</h1>
-    <p>Resep Lezat Setiap Hari</p>
+    <p>Resep Otentik & Lezat 100% Responsive</p>
 </header>
 
-<div class="container" id="feed-container">
-    <p style="text-align:center;">Memuat resep lezat...</p>
+<div id="filter-bar" class="filter-bar">
+    <h3>Menampilkan <span id="active-tag-name"></span></h3>
+    <a href="index.html" class="btn-reset">Tampilkan Semua</a>
 </div>
 
-<footer>&copy; 2024 nyamannya</footer>
+<main class="container" id="article-list"></main>
+
+<footer>&copy; 2024 Italian Blog | BlueSky & Pink Theme</footer>
 
 <script>
-    async function loadArticles() {
-        try {
-            const response = await fetch('articles.json');
-            const data = await response.json();
-            
-            const container = document.getElementById('feed-container');
-            container.innerHTML = ''; // Hapus pesan memuat
+    let latestUrl = "";
+    let latestId = 0;
 
-            data.forEach(item => {
+    async function initBlog() {
+        try {
+            const res = await fetch('articles.json');
+            const data = await res.json();
+            
+            const params = new URLSearchParams(window.location.search);
+            const tagFilter = params.get('tag');
+
+            const container = document.getElementById('article-list');
+            container.innerHTML = '';
+
+            if(tagFilter) {
+                document.getElementById('filter-bar').style.display = 'flex';
+                document.getElementById('active-tag-name').innerText = tagFilter;
+            }
+
+            const filteredData = tagFilter 
+                ? data.filter(item => item.tags.includes(tagFilter)) 
+                : data;
+
+            filteredData.forEach(item => {
+                let tagsHtml = '';
+                item.tags.forEach(t => {
+                    tagsHtml += `<a href="index.html?tag=${t}" class="tag">${t}</a>`;
+                });
+
                 container.innerHTML += `
-                <article class="article-card">
-                    <a href="${item.url}" rel="nofollow">
-                        <img src="${item.image}" alt="${item.title}">
-                    </a>
-                    <div class="article-info">
-                        <h2>${item.title}</h2>
-                        <p>${item.desc}</p>
-                        <a href="${item.url}" class="btn-read">Baca Resep</a>
-                    </div>
-                </article>
+                    <article class="article-card">
+                        <a href="${item.url}" rel="nofollow">
+                            <img src="${item.image}" alt="${item.title}">
+                        </a>
+                        <div class="article-content">
+                            <div class="tag-container">${tagsHtml}</div>
+                            <h2>${item.title}</h2>
+                            <p>${item.desc}</p>
+                            <a href="${item.url}" class="btn-read">Baca Selengkapnya</a>
+                        </div>
+                    </article>
                 `;
             });
 
-            // Cek Notifikasi
-            const latestArticle = data[0];
-            const lastId = localStorage.getItem('last_id');
-            if (!lastId || parseInt(lastId) < latestArticle.id) {
-                showPush(latestArticle);
+            if(!tagFilter) {
+                const latest = data[0];
+                latestUrl = latest.url;
+                latestId = latest.id;
+                const seenId = localStorage.getItem('last_seen_id');
+                if (!seenId || parseInt(seenId) < latest.id) {
+                    document.getElementById('notif-text').innerText = latest.title;
+                    setTimeout(() => { document.getElementById('push-notif').classList.add('active'); }, 3000);
+                }
             }
-
-        } catch (e) {
-            console.error("Gagal load data");
-        }
+        } catch (e) { console.error("Gagal memuat artikel."); }
     }
 
-    function showPush(art) {
-        const notif = document.getElementById('push-notif');
-        document.getElementById('notif-title-text').innerText = art.title;
-        
-        setTimeout(() => { notif.classList.add('active'); }, 2000);
-
-        document.getElementById('btn-open-notif').onclick = () => {
-            localStorage.setItem('last_id', art.id);
-            window.location.href = art.url;
-        };
+    function openLatest() {
+        localStorage.setItem('last_seen_id', latestId);
+        window.location.href = latestUrl;
     }
 
-    window.onload = loadArticles;
+    window.onload = initBlog;
 </script>
 </body>
 </html>
